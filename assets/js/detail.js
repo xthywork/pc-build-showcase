@@ -1,68 +1,103 @@
 const id = document.body.dataset.build;
-const b = BUILDS.find(x => x.id === id) || BUILDS[0];
-document.title = `${b.name} — MY BUILDS`;
+const build = BUILDS.find(item => item.id === id) || BUILDS[0];
+const orderedVersions = window.getBuildVersions(build);
+const versions = orderedVersions.filter(version => version.status !== 'planned').reverse()
+  .concat(orderedVersions.filter(version => version.status === 'planned'));
+const selector = document.querySelector('#version-select');
+const query = new URLSearchParams(location.search);
+const requestedVersion = query.get('version');
+const initialVersion = versions.find(version => version.id === requestedVersion)
+  || window.getLatestBuildVersion(build);
 
-const q = selector => document.querySelector(selector);
-const fill = (selector, value) => {
-  document.querySelectorAll(selector).forEach(element => {
+document.title = `${build.name} — MY BUILDS`;
+
+const q = selectorText => document.querySelector(selectorText);
+const fill = (selectorText, value) => {
+  document.querySelectorAll(selectorText).forEach(element => {
     element.textContent = value || '';
   });
 };
 
-fill('[data-name]', b.name);
-fill('[data-code]', b.code);
-fill('[data-purpose]', b.purpose);
+const formatVersion = version => {
+  if (!version.date) return `${version.label || '目前配置'}${version.status === 'planned' ? '（預計）' : ''}`;
+  const [year, month] = version.date.split('-');
+  const changeLabel = version.changeLabel || version.label;
+  const plannedLabel = version.status === 'planned' ? '（預計）' : '';
+  return `${year} 年 ${Number(month)} 月${changeLabel ? ` · ${changeLabel}` : ''}${plannedLabel}`;
+};
 
-if (!b.purpose) q('[data-purpose]')?.remove();
+versions.forEach(version => {
+  selector.add(new Option(formatVersion(version), version.id));
+});
+selector.value = initialVersion.id;
 
-const heroFacts = [
-  ['YEAR', b.year],
-  ['CPU', b.cpu],
-  ['GPU', b.gpu],
-  ['RAM', b.ram],
-  ...(b.drives || []).map(drive => [drive.type, drive.model]),
-  ['主機板', b.motherboard],
-  ['作業系統', b.os]
-].filter(([, value]) => value);
-
-q('#hero-facts').innerHTML = heroFacts
-  .map(([label, value]) => `<div class="hero-fact"><dt>${label}</dt><dd>${value}</dd></div>`)
-  .join('');
-
+const carousel = q('#parts');
 const componentSection = q('#components-section');
-if (b.parts?.length) {
-  const carousel = q('#parts');
-  carousel.innerHTML = b.parts
+
+document.querySelectorAll('.carousel-btn').forEach(button => {
+  button.addEventListener('click', () => carousel.scrollBy({
+    left: (button.dataset.dir === 'next' ? 1 : -1) * carousel.clientWidth * 0.72,
+    behavior: 'smooth'
+  }));
+});
+
+let startX = 0;
+carousel.addEventListener('pointerdown', event => {
+  startX = event.clientX;
+  carousel.setPointerCapture(event.pointerId);
+});
+carousel.addEventListener('pointerup', event => {
+  const distance = startX - event.clientX;
+  if (Math.abs(distance) > 45) {
+    carousel.scrollBy({
+      left: Math.sign(distance) * carousel.clientWidth * 0.72,
+      behavior: 'smooth'
+    });
+  }
+});
+
+function renderVersion(version) {
+  const config = version.configuration;
+  const heroFacts = [
+    ['YEAR', config.year],
+    ['CPU', config.cpu],
+    ['GPU', config.gpu],
+    ['PSU', config.psu],
+    ['RAM', config.ram],
+    ...(config.drives || []).map(drive => [drive.type, drive.model]),
+    ['主機板', config.motherboard],
+    ['作業系統', config.os],
+    ['螢幕', config.display],
+    ['I/O', config.io]
+  ].filter(([, value]) => value);
+
+  fill('[data-name]', build.name);
+  fill('[data-code]', build.code);
+  fill('[data-purpose]', config.purpose || build.purpose);
+  q('[data-purpose]').hidden = !(config.purpose || build.purpose);
+  q('#version-note').textContent = version.summary || formatVersion(version);
+  q('#hero-facts').innerHTML = heroFacts
+    .map(([label, value]) => `<div class="hero-fact"><dt>${label}</dt><dd>${value}</dd></div>`)
+    .join('');
+
+  const parts = config.parts || [];
+  componentSection.hidden = !parts.length;
+  carousel.innerHTML = parts
     .map((part, index) => `<article class="part-card"><span class="placeholder">${part[0]}</span><footer><span>${part[1]}</span><span>PHOTO ${String(index + 1).padStart(2, '0')}</span></footer></article>`)
     .join('');
 
-  document.querySelectorAll('.carousel-btn').forEach(button => {
-    button.addEventListener('click', () => carousel.scrollBy({
-      left: (button.dataset.dir === 'next' ? 1 : -1) * carousel.clientWidth * 0.72,
-      behavior: 'smooth'
-    }));
-  });
-
-  let startX = 0;
-  carousel.addEventListener('pointerdown', event => {
-    startX = event.clientX;
-    carousel.setPointerCapture(event.pointerId);
-  });
-  carousel.addEventListener('pointerup', event => {
-    const distance = startX - event.clientX;
-    if (Math.abs(distance) > 45) {
-      carousel.scrollBy({
-        left: Math.sign(distance) * carousel.clientWidth * 0.72,
-        behavior: 'smooth'
-      });
-    }
-  });
-} else {
-  componentSection?.remove();
-  if (q('#specs-label')) q('#specs-label').textContent = '01 / FULL SPECIFICATIONS';
+  q('#specs-label').textContent = `${parts.length ? '02' : '01'} / FULL SPECIFICATIONS`;
+  q('#specs').innerHTML = Object.entries(config.specs || {})
+    .filter(([, rows]) => rows?.length)
+    .map(([group, rows]) => `<section class="spec-group"><h3>${group.toUpperCase().replace('_', ' ')}</h3><dl class="spec-rows">${rows.map(row => `<div class="spec-row"><dt>${row[0]}</dt><dd>${row[1]}</dd></div>`).join('')}</dl></section>`)
+    .join('');
 }
 
-q('#specs').innerHTML = Object.entries(b.specs || {})
-  .filter(([, rows]) => rows?.length)
-  .map(([group, rows]) => `<section class="spec-group"><h3>${group.toUpperCase().replace('_', ' ')}</h3><dl class="spec-rows">${rows.map(row => `<div class="spec-row"><dt>${row[0]}</dt><dd>${row[1]}</dd></div>`).join('')}</dl></section>`)
-  .join('');
+renderVersion(initialVersion);
+selector.addEventListener('change', () => {
+  const selected = versions.find(version => version.id === selector.value);
+  if (!selected) return;
+  renderVersion(selected);
+  query.set('version', selected.id);
+  history.replaceState(null, '', `${location.pathname}?${query.toString()}`);
+});
