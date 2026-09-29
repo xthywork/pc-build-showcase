@@ -362,6 +362,140 @@ window.BUILDS = [
       'https://www.dell.com/support/manuals/en-us/optiplex-7070-desktop/opti7070_mt_setup_specs/ports-and-connectors?guid=guid-0cb86ac5-ad1f-4ce2-a67c-136de301f6ec',
       'https://www.intel.com/content/www/us/en/products/sku/190884/intel-core-i59500t-processor-9m-cache-up-to-3-70-ghz/specifications.html'
     ]
+  },
+  {
+    id: 'nas',
+    name: 'NAS',
+    purpose: 'NETWORK ATTACHED STORAGE',
+    code: 'NAS–01',
+    cpu: 'Intel Core i3-8100',
+    motherboard: 'ASUS WS C246 PRO',
+    ram: '16 GB DDR4（Kingston FURY Beast DDR4-3200；平台上限 DDR4-2400）',
+    gpu: 'Intel UHD Graphics 630（處理器內顯）',
+    psu: 'MONTECH CENTURY 550W 80 PLUS Gold 全模組化',
+    os: 'TrueNAS（版本未提供）',
+    drives: [
+      { type: 'SSD 1 · NVMe M.2', model: '128 GB（品牌／型號／尺寸未提供）' },
+      { type: 'SSD 2 · SATA M.2', model: '128 GB（品牌／型號／尺寸未提供）' },
+      { type: 'HDD × 4', model: 'Seagate IronWolf 4 TB × 4' }
+    ],
+    storage: 'NVMe M.2 SSD 128 GB + SATA M.2 SSD 128 GB + 4 × 4 TB HDD（RAIDZ1）',
+    cooling: '未提供',
+    href: 'nas.html',
+    parts: [],
+    specs: {
+      CPU: [
+        ['完整型號', 'Intel Core i3-8100'],
+        ['產品系列／代號', '第 8 代 Intel Core / Coffee Lake'],
+        ['核心／執行緒', '4 / 4'],
+        ['Base Clock', '3.6 GHz'],
+        ['Max Turbo Frequency', '不支援 Intel Turbo Boost'],
+        ['Intel Smart Cache', '6 MB'],
+        ['TDP', '65 W'],
+        ['製程', '14 nm'],
+        ['插槽', 'LGA1151'],
+        ['最大記憶體容量', '64 GB'],
+        ['記憶體支援', 'DDR4-2400'],
+        ['記憶體通道', '雙通道'],
+        ['PCI Express', 'PCIe 3.0，最多 16 lanes'],
+        ['最高運作溫度', '100°C']
+      ],
+      MOTHERBOARD: [
+        ['完整型號', 'ASUS WS C246 PRO'],
+        ['晶片組', 'Intel C246'],
+        ['CPU 插槽', 'LGA1151；支援第 8／9 代 Intel Core、Pentium、Celeron 與 Xeon E 系列'],
+        ['尺寸', 'ATX（305 × 244 mm）'],
+        ['記憶體插槽', '4 × DDR4 UDIMM'],
+        ['最大記憶體容量', '128 GB（依處理器與 DIMM 類型）'],
+        ['記憶體架構', '雙通道；DDR4-2666 / 2400；ECC 或 non-ECC UDIMM（依 CPU）'],
+        ['PCIe 擴充', '2 × PCIe 3.0 x16（x16 / x8）+ 1 × PCIe 3.0 x16（x4）+ 2 × PCIe x1 + 1 × PCIe x4'],
+        ['M.2', '2 × M.2；插槽支援 PCIe 3.0 x4，尺寸含 2242 / 2260 / 2280 / 22110（依插槽）'],
+        ['SATA', '8 × SATA 6 Gb/s'],
+        ['有線網路', '2 × Gigabit Ethernet（Intel I210-AT + Intel I219-LM）'],
+        ['內建顯示輸出', '1 × DisplayPort / 1 × HDMI / 1 × DVI-D / 1 × VGA'],
+        ['音效', '8 聲道 HD Audio I/O'],
+        ['其他 I/O', '1 × USB 3.1 Gen 2 Type-A / 1 × USB 3.1 Gen 2 Type-C / 4 × USB 3.0 / S/PDIF 光纖輸出 / COM']
+      ],
+      RAM: [
+        ['品牌／系列', 'Kingston FURY Beast DDR4'],
+        ['總容量', '16 GB'],
+        ['模組數量', '未提供'],
+        ['記憶體類型', 'DDR4 UDIMM，non-ECC unbuffered'],
+        ['模組額定速度', 'DDR4-3200（FURY Beast 系列規格）'],
+        ['平台記憶體速度上限', '最高 DDR4-2400（依 Intel Core i3-8100 規格）'],
+        ['XMP 電壓', '系列規格 1.35 V；實際模組料號未提供'],
+        ['CAS Latency', '依模組料號而異，料號未提供']
+      ],
+      GRAPHICS: [
+        ['顯示核心', 'Intel UHD Graphics 630（處理器內顯）'],
+        ['Execution Units', '23 EU'],
+        ['Graphics Base Frequency', '350 MHz'],
+        ['Graphics Max Dynamic Frequency', '1.10 GHz']
+      ],
+      'I/O': [
+        ['USB', '1 × USB 3.1 Gen 2 Type-A / 1 × USB 3.1 Gen 2 Type-C / 4 × USB 3.0'],
+        ['影像輸出', '1 × HDMI / 1 × DisplayPort / 1 × DVI-D / 1 × VGA'],
+        ['網路', '2 × Gigabit Ethernet（Intel I210-AT + I219-LM）'],
+        ['音訊', '8 聲道 Audio I/O'],
+        ['其他', 'S/PDIF 光纖輸出 / COM Port']
+      ],
+      STORAGE_01: [
+        ['類型', 'NVMe M.2 SSD'],
+        ['容量', '128 GB'],
+        ['品牌／型號', '未提供'],
+        ['M.2 尺寸', '未提供'],
+        ['介面', 'NVMe（使用者提供）']
+      ],
+      STORAGE_02: [
+        ['類型', 'SATA M.2 SSD'],
+        ['容量', '128 GB'],
+        ['品牌／型號', '未提供'],
+        ['M.2 尺寸', '未提供'],
+        ['介面', 'SATA（使用者提供）']
+      ],
+      STORAGE_03: [
+        ['型號', 'Seagate IronWolf 4 TB'],
+        ['數量', '4 顆'],
+        ['單顆容量', '4 TB'],
+        ['原始／估計可用容量', '16 TB / RAIDZ1 約 12 TB（未計檔案系統開銷）'],
+        ['系列定位', 'NAS HDD'],
+        ['介面', 'SATA 6 Gb/s'],
+        ['儲存配置', 'RAIDZ1（單顆磁碟容錯）']
+      ],
+      POWER: [
+        ['完整型號', 'MONTECH CENTURY 550W'],
+        ['額定功率', '550 W'],
+        ['效率認證', '80 PLUS Gold'],
+        ['模組化', '全模組化'],
+        ['風扇', 'FDB 風扇'],
+        ['電容', '日本電容'],
+        ['保固', '5 年（CENTURY 系列規格）']
+      ],
+      CASE: [
+        ['品牌／型號', '半島鐵盒 PADO F10'],
+        ['顏色', '黑色'],
+        ['機殼類型', '中塔式多硬碟機殼'],
+        ['主機板相容性', 'ATX / Micro-ATX / Mini-ITX'],
+        ['硬碟擴充', '標示總計 13 個硬碟位（10 × 3.5 吋 + 3 × 2.5 吋）'],
+        ['機殼尺寸', '約 410 × 210 × 475 mm'],
+        ['顯卡長度限制', '約 260 mm'],
+        ['CPU 散熱器高度限制', '約 170 mm'],
+        ['風扇位置', '前置最多 3 顆、頂部 2 顆、後置 1 顆']
+      ],
+      SYSTEM: [
+        ['作業系統', 'TrueNAS SCALE（版本未提供）']
+      ]
+    },
+    sources: [
+      'https://www.intel.com/content/www/us/en/products/sku/126688/intel-core-i38100-processor-6m-cache-3-60-ghz/specifications.html',
+      'https://www.asus.com/motherboards-components/motherboards/workstation/ws-c246-pro/techspec/',
+      'https://www.kingston.com/tw/memory/gaming/kingston-fury-beast-ddr4-memory',
+      'https://www.montechpc.com/century-550w',
+      'https://www.seagate.com/products/nas-drives/ironwolf-hard-drive/',
+      'https://item.jd.com/100022205846.html',
+      'https://diy.zol.com.cn/883/8836750.html',
+      'https://www.truenas.com/docs/scale/gettingstarted/tnhardwareguide/'
+    ]
   }
 ];
 
@@ -503,6 +637,35 @@ const gtx1650VentusSpecs = [
   ['散熱', '雙風扇']
 ];
 
+const radeonHd7470Specs = [
+  ['完整型號', 'ASUS Radeon HD 7470 OEM（單槽；ASUS Essentio Series）'],
+  ['GPU 架構', 'AMD TeraScale 2 / Caicos'],
+  ['Stream Processors', '160'],
+  ['核心時脈', '750 MHz（HD 7470 OEM 參考規格）'],
+  ['製程', '40 nm'],
+  ['顯示記憶體', '1 GB GDDR5（HD 7470 OEM 參考規格）'],
+  ['記憶體介面', '64-bit'],
+  ['記憶體時脈', '900 MHz'],
+  ['介面', 'PCI Express 2.0 x16'],
+  ['插槽寬度', '單槽'],
+  ['影像輸出', '1 × DVI / 1 × DisplayPort（HD 7470 OEM 參考規格）'],
+  ['功耗', '27 W（HD 7470 OEM 參考規格）']
+];
+
+const enermaxRevolutionIII850Specs = [
+  ['完整型號', 'ENERMAX REVOLUTION III 850W'],
+  ['產品型號', 'ERV850G-AHG-MAC / ERV850G-AHG-MAV（依區域版本）'],
+  ['額定功率', '850 W'],
+  ['效率認證', '80 PLUS Gold'],
+  ['電源規範', 'ATX 3.1'],
+  ['模組化', '全模組化'],
+  ['顯卡電源線', '原生 600 W 12V-2x6'],
+  ['風扇', '120 mm FDB'],
+  ['電容', '100% 日系電容'],
+  ['保護機制', 'OCP / OVP / UVP / OPP / OTP / SCP'],
+  ['尺寸', '140 × 150 × 86 mm']
+];
+
 const rog3090Specs = [
   ['完整型號', 'ASUS ROG-STRIX-RTX3090-O24G-GAMING'],
   ['GPU 架構', 'NVIDIA Ampere / GeForce RTX 3090'],
@@ -544,7 +707,9 @@ const sources = {
   transcend: 'https://www.transcend-info.com/Products/No-705',
   asusDual3060: 'https://www.asus.com/motherboards-components/graphics-cards/dual/dual-rtx3060-o12g-v2/techspec/',
   msiGtx1650: 'https://www.msi.com/Graphics-Card/GeForce-GTX-1650-VENTUS-XS-4G-OC/Specification',
+  radeonHd7470: 'https://technical.city/en/gpu/Radeon-HD-7470-OEM',
   msiVentus3060: 'https://www.msi.com/Graphics-Card/GeForce-RTX-3060-VENTUS-3X-12G-OC/Specification',
+  enermaxRevolutionIII850: 'https://www.enermax.com/en/products/revolution-iii-850',
   evga1000: 'https://www.evga.com/products/Specs/PSU.aspx?pn=71d331b7-9306-4218-987f-875fd422fd44',
   fsp1200: 'https://www.fsplifestyle.com/us/product/HydroPTMXPRO1200W_GEN5.html',
   rog3090: 'https://rog.asus.com/graphics-cards/graphics-cards/rog-strix/rog-strix-rtx3090-o24g-gaming-model/spec/',
@@ -750,6 +915,21 @@ ubuntuServer.versions = [
   }
 ];
 
+ubuntuServer.versions.push({
+  id: '2026-10',
+  date: '2026-10',
+  label: '顯示卡更換',
+  changeLabel: 'RTX 5070 Ti → ASUS Radeon HD 7470 OEM',
+  summary: '移除 ZOTAC RTX 5070 Ti，改用 ASUS Radeon HD 7470 OEM 單槽顯示卡（ASUS Essentio Series）；列出的晶片規格為 HD 7470 OEM 參考規格。',
+  configuration: (() => {
+    const config = cloneConfig(currentJulyConfig);
+    config.gpu = 'ASUS Radeon HD 7470 OEM GPU Single Slot - ASUS Essentio Series';
+    config.specs = { ...config.specs, GPU: cloneConfig(radeonHd7470Specs) };
+    config.sources = [...new Set([...config.sources, sources.radeonHd7470])];
+    return config;
+  })()
+});
+
 const windowsBuild = window.BUILDS.find(build => build.id === 'intel-i5-12400');
 const currentWindowsConfig = windowsBuild.versions[0].configuration;
 const initialKingstonDrive = currentWindowsConfig.drives[0];
@@ -827,15 +1007,30 @@ windowsBuild.versions = [
   }),
   {
     ...createWindowsSnapshot({
-      date: '2026-12',
-      label: '預計更換顯示卡',
-      changeLabel: 'ZOTAC RTX 3060 → MSI RTX 3060 VENTUS 3X',
-      summary: '預計於 2026 年 12 月更換為 MSI GeForce RTX 3060 VENTUS 3X 12G OC；此為未來規劃，尚未成為目前配置。',
-      gpu: 'MSI GeForce RTX 3060 VENTUS 3X 12G OC',
-      gpuSpecs: dualMsi3060Specs,
+      date: '2026-10',
+      label: '顯示卡與電源升級',
+      changeLabel: 'RTX 3060 → RTX 5070 Ti · ENERMAX 850W',
+      summary: '從 Ubuntu Server 移入 ZOTAC RTX 5070 Ti，並更換為 ENERMAX REVOLUTION III 850W ATX 3.1 金牌全模組電源。',
+      gpu: currentUbuntuConfig.gpu,
+      gpuSpecs: currentUbuntuConfig.specs.GPU,
       includeSecondDrive: true
     }),
-    status: 'planned'
+    configuration: (() => {
+      const configuration = cloneConfig(currentWindowsConfig);
+      configuration.gpu = currentUbuntuConfig.gpu;
+      configuration.psu = 'ENERMAX REVOLUTION III 850W 80 PLUS Gold 全模組化';
+      configuration.specs = {
+        ...cloneConfig(currentWindowsConfig.specs),
+        GPU: cloneConfig(currentUbuntuConfig.specs.GPU),
+        POWER: cloneConfig(enermaxRevolutionIII850Specs)
+      };
+      configuration.sources = [...new Set([
+        ...configuration.sources,
+        ...currentUbuntuConfig.sources,
+        sources.enermaxRevolutionIII850
+      ].filter(Boolean))];
+      return configuration;
+    })()
   }
 ];
 
@@ -848,4 +1043,13 @@ dellBuild.versions = [{
   changeLabel: 'OptiPlex 7070 · i5-9500T',
   summary: '2026 年 1 月配置紀錄；目前沒有其他零件更換紀錄。',
   configuration: dellCurrentConfig
+}];
+
+const nasBuild = window.BUILDS.find(build => build.id === 'nas');
+nasBuild.versions = [{
+  id: 'current',
+  date: null,
+  label: '目前配置',
+  summary: '目前登錄配置；TrueNAS SCALE 版本未提供。',
+  configuration: nasBuild.versions[0].configuration
 }];
