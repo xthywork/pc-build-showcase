@@ -1100,3 +1100,105 @@ nasBuild.versions = [{
   summary: '目前登錄配置；TrueNAS SCALE 版本未提供。',
   configuration: nasBuild.versions[0].configuration
 }];
+
+const itxConfiguration = {
+  cpu: 'Intel Core i5-9600K',
+  motherboard: 'MSI MPG Z390I GAMING EDGE AC',
+  ram: '16 GB DDR4（8 GB × 2）',
+  gpu: 'MSI GeForce GTX 1650 D6 VENTUS XS OCV1',
+  os: 'Windows 11 專業版',
+  cooling: '寒溪花 G2-120 白色 ARGB 深鏡款 · 120 mm 一體式水冷',
+  psu: 'SFX 550 W（品牌／型號未提供）',
+  drives: [{ type: 'M.2 SSD', model: '512 GB（品牌／型號／介面未提供）' }],
+  parts: [],
+  specs: {
+    CPU: cloneConfig(firstBuildCpuSpecs),
+    MOTHERBOARD: [
+      ['完整型號', 'MSI MPG Z390I GAMING EDGE AC'],
+      ['晶片組', 'Intel Z390'],
+      ['CPU 插槽', 'LGA1151，支援第 8／9 代 Intel Core'],
+      ['尺寸', 'Mini-ITX（170 × 170 mm）'],
+      ['記憶體插槽', '2 × DDR4 DIMM，雙通道'],
+      ['最大記憶體容量', '64 GB（依官方最新規格）'],
+      ['記憶體支援', 'DDR4-2133 / 2400 / 2666，最高 4800（OC）；支援 XMP'],
+      ['擴充插槽', '1 × PCIe 3.0 x16'],
+      ['M.2', '2 × Key M，支援 2260 / 2280；M2_1 支援 PCIe 3.0 x4 / SATA，M2_2 支援 PCIe 3.0 x4'],
+      ['SATA', '4 × SATA 6 Gb/s；M2_1 安裝 SATA SSD 時 SATA2 停用'],
+      ['RAID 支援', 'SATA RAID 0 / 1 / 5 / 10；M.2 PCIe RAID 0 / 1'],
+      ['有線網路', 'Realtek 8111H Gigabit LAN'],
+      ['無線網路', 'Intel Wireless-AC 9462，802.11ac，2.4 / 5 GHz，最高 433 Mbps'],
+      ['藍牙', 'Bluetooth 5'],
+      ['音效', 'Realtek ALC892，7.1 聲道，光纖 S/PDIF'],
+      ['後置 USB', '2 × USB 3.1 Gen 2 Type-A + 2 × USB 3.1 Gen 1 Type-A + 2 × USB 2.0'],
+      ['影像輸出', '1 × DisplayPort + 1 × HDMI'],
+      ['風扇／水泵接頭', 'CPU、系統風扇、水泵各 1 × 4-pin']
+    ],
+    RAM: [
+      ['總容量', '16 GB（8 GB × 2）'],
+      ['記憶體類型', 'DDR4'],
+      ['通道配置', '雙通道'],
+      ['品牌／型號／速度', '未提供']
+    ],
+    GPU: [
+      ['完整型號', 'MSI GeForce GTX 1650 D6 VENTUS XS OCV1'],
+      ['GPU 架構', 'NVIDIA Turing / GeForce GTX 1650'],
+      ['CUDA 核心', '896'],
+      ['Boost Clock', '1,620 MHz'],
+      ['顯示記憶體', '4 GB GDDR6'],
+      ['記憶體介面', '128-bit'],
+      ['記憶體速度', '12 Gbps'],
+      ['介面', 'PCI Express 3.0 x16'],
+      ['影像輸出', '1 × DL-DVI-D / 1 × HDMI 2.0b / 1 × DisplayPort 1.4'],
+      ['最大解析度', '7680 × 4320'],
+      ['最大顯示器數量', '3'],
+      ['功耗', '75 W'],
+      ['供電接頭', '1 × 6-pin'],
+      ['建議電源', '300 W'],
+      ['散熱', '雙風扇'],
+      ['尺寸', '179 × 115 × 42 mm'],
+      ['重量', '466 g']
+    ],
+    STORAGE_01: [
+      ['類型', 'M.2 SSD'],
+      ['容量', '512 GB'],
+      ['品牌／型號', '未提供'],
+      ['介面／協定／尺寸', '未提供']
+    ],
+    COOLING: [
+      ['品牌', '寒溪花'],
+      ['型號', 'G2-120'],
+      ['款式', '白色 ARGB 深鏡款'],
+      ['類型', '120 mm 一體式水冷'],
+      ['規格依據', '型號及款式由使用者確認；轉速、噪音與冷排尺寸未提供']
+    ],
+    POWER: [
+      ['額定功率', '550 W'],
+      ['規格', 'SFX'],
+      ['品牌／型號', '未提供'],
+      ['效率認證／模組化', '未提供']
+    ],
+    SYSTEM: [['作業系統', 'Windows 11 專業版']]
+  },
+  sources: [
+    sources.intel9600k,
+    'https://www.msi.com/Motherboard/MPG-Z390I-GAMING-EDGE-AC/Specification',
+    'https://us.msi.com/Graphics-Card/GeForce-GTX-1650-D6-VENTUS-XS-OCV1/Specification'
+  ]
+};
+
+window.BUILDS.push({
+  id: 'intel-i5-9600k',
+  name: 'Windows 11 · i5-9600K',
+  purpose: 'MINI-ITX',
+  code: 'WINDOWS–02',
+  href: 'intel-i5-9600k.html',
+  ...cloneConfig(itxConfiguration),
+  versions: [{
+    id: '2026-10',
+    date: '2026-10',
+    label: '初始配置紀錄',
+    changeLabel: 'i5-9600K · Z390I · GTX 1650',
+    summary: '2026 年 10 月配置紀錄：Mini-ITX 主機，搭配 GTX 1650 D6 VENTUS XS OCV1（6-pin）、寒溪花 G2-120 白色 ARGB 深鏡款水冷與 Windows 11 專業版。',
+    configuration: itxConfiguration
+  }]
+});
