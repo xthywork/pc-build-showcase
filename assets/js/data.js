@@ -1109,7 +1109,7 @@ const itxConfiguration = {
   os: 'Windows 11 專業版',
   cooling: '寒溪花 G2-120 白色 ARGB 深鏡款 · 120 mm 一體式水冷',
   psu: 'SFX 550 W（品牌／型號未提供）',
-  drives: [{ type: 'M.2 SSD', model: '512 GB（品牌／型號／介面未提供）' }],
+  drives: [{ type: 'M.2 NVMe SSD', model: '512 GB（品牌／型號未提供）' }],
   parts: [],
   specs: {
     CPU: cloneConfig(firstBuildCpuSpecs),
@@ -1160,17 +1160,17 @@ const itxConfiguration = {
       ['重量', '466 g']
     ],
     STORAGE_01: [
-      ['類型', 'M.2 SSD'],
+      ['類型', 'M.2 NVMe SSD'],
       ['容量', '512 GB'],
       ['品牌／型號', '未提供'],
-      ['介面／協定／尺寸', '未提供']
+      ['介面／協定', 'NVMe'],
+      ['M.2 尺寸', '未提供']
     ],
     COOLING: [
       ['品牌', '寒溪花'],
       ['型號', 'G2-120'],
       ['款式', '白色 ARGB 深鏡款'],
-      ['類型', '120 mm 一體式水冷'],
-      ['規格依據', '型號及款式由使用者確認；轉速、噪音與冷排尺寸未提供']
+      ['類型', '120 mm 一體式水冷']
     ],
     POWER: [
       ['額定功率', '550 W'],
