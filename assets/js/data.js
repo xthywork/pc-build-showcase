@@ -1,10 +1,10 @@
 window.BUILDS = [
   {
     id: 'ubuntu-server',
-    name: 'Ubuntu Server',
+    name: 'Proxmox VE 9.1.1',
     purpose: '',
     year: '2025',
-    code: 'UBUNTU–01',
+    code: 'PROXMOX–01',
     os: 'Ubuntu Server 24.04 LTS',
     cpu: 'AMD Ryzen 9 5900X',
     motherboard: 'ASUS ROG STRIX B550-F GAMING WIFI II',
@@ -748,7 +748,7 @@ const datedUbuntuConfigs = [
     id: '2025-06',
     label: '初次組裝',
     changeLabel: 'i5-9600K · 雙 RTX 3060',
-    summary: '2025 年 6 月首次組裝。初始記憶體為 Kingston ValueRAM 16 GB × 2；SSD RAID 1 沿用至今。',
+    summary: '2025 年 6 月首次組裝。初始記憶體為 Kingston ValueRAM 16 GB × 2；SSD 配置為 RAID 1。',
     cpu: 'Intel Core i5-9600K',
     motherboard: 'MSI Z370 GAMING PRO CARBON',
     ram: '32 GB DDR4（Kingston ValueRAM 16 GB × 2）',
@@ -932,6 +932,53 @@ ubuntuServer.versions.push({
 
 const windowsBuild = window.BUILDS.find(build => build.id === 'intel-i5-12400');
 const currentWindowsConfig = windowsBuild.versions[0].configuration;
+const octoberServerVersion = ubuntuServer.versions.find(version => version.id === '2026-10');
+octoberServerVersion.label = '系統與硬體更新';
+octoberServerVersion.changeLabel = 'Proxmox VE 9.1.1 · + RTX 3060 · 儲存重整';
+octoberServerVersion.summary = '系統改為 Proxmox VE 9.1.1，加入原 Windows 主機的 ZOTAC RTX 3060 AMP White Edition，保留 HD 7470；兩顆 Micron 512 GB SSD 取消 RAID 1、分開使用，新增 SanDisk 128 GB SATA SSD 與 Kingston 512 GB NVMe M.2 SSD，移除 WD Blue 250 GB SSD。';
+const octoberServerConfig = octoberServerVersion.configuration;
+octoberServerConfig.os = 'Proxmox VE 9.1.1';
+octoberServerConfig.gpu = `${octoberServerConfig.gpu} + ${currentWindowsConfig.gpu}`;
+octoberServerConfig.drives = [
+  { type: 'M.2 SSD 1', model: 'Micron 2400 512 GB NVMe SSD（獨立使用）' },
+  { type: 'M.2 SSD 2', model: 'Micron 2400 512 GB NVMe SSD（獨立使用）' },
+  { type: 'SATA SSD', model: 'SanDisk 128 GB（型號未提供）' },
+  { type: 'NVMe M.2 SSD 3', model: 'Kingston 512 GB（型號未提供）' },
+  cloneConfig(ironWolfDrive)
+];
+octoberServerConfig.storage = octoberServerConfig.drives.map(drive => drive.model).join(' + ');
+delete octoberServerConfig.specs.GPU;
+Object.assign(octoberServerConfig.specs, {
+  GPU_01: cloneConfig(radeonHd7470Specs),
+  GPU_02: cloneConfig(currentWindowsConfig.specs.GPU),
+  STORAGE_01: [
+    ['型號', 'Micron 2400 512 GB NVMe SSD'],
+    ['容量', '512 GB'],
+    ['類型', 'M.2 NVMe SSD']
+  ],
+  STORAGE_02: [
+    ['型號', 'Micron 2400 512 GB NVMe SSD'],
+    ['容量', '512 GB'],
+    ['類型', 'M.2 NVMe SSD']
+  ],
+  STORAGE_03: [
+    ['品牌', 'SanDisk'],
+    ['類型', 'SSD'],
+    ['容量', '128 GB'],
+    ['介面', 'SATA'],
+    ['型號', '未提供']
+  ],
+  STORAGE_04: [
+    ['品牌', 'Kingston'],
+    ['類型', 'M.2 SSD'],
+    ['容量', '512 GB'],
+    ['介面／協定', 'NVMe'],
+    ['型號', '未提供']
+  ],
+  STORAGE_05: cloneConfig(currentUbuntuConfig.specs.STORAGE_03),
+  SYSTEM: [['作業系統', 'Proxmox VE 9.1.1'], ['組裝年份', '2025']]
+});
+octoberServerConfig.sources.push('https://www.zotac.com/product/graphics_card/zotac-gaming-geforce-rtx-3060-amp-white-edition');
 const initialKingstonDrive = currentWindowsConfig.drives[0];
 const secondMicronDrive = currentWindowsConfig.drives[1];
 
