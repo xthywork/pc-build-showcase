@@ -1104,7 +1104,7 @@ nasBuild.versions = [{
 const itxConfiguration = {
   cpu: 'Intel Core i5-9600K',
   motherboard: 'MSI MPG Z390I GAMING EDGE AC',
-  ram: '16 GB DDR4（8 GB × 2）',
+  ram: '16 GB DDR4-2400（8 GB × 2）',
   gpu: 'MSI GeForce GTX 1650 D6 VENTUS XS OCV1',
   os: 'Windows 11 專業版',
   cooling: '寒溪花 G2-120 白色 ARGB 深鏡款 · 120 mm 一體式水冷',
@@ -1137,7 +1137,8 @@ const itxConfiguration = {
       ['總容量', '16 GB（8 GB × 2）'],
       ['記憶體類型', 'DDR4'],
       ['通道配置', '雙通道'],
-      ['品牌／型號／速度', '未提供']
+      ['速度', 'DDR4-2400'],
+      ['品牌／型號', '未提供']
     ],
     GPU: [
       ['完整型號', 'MSI GeForce GTX 1650 D6 VENTUS XS OCV1'],
